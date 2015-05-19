@@ -1,2 +1,1 @@
-# mini-calendar
-iBex Mini Calendar Widget
+# iBex Mini Calendar Widget

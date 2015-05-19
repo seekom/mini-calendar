@@ -1,0 +1,87 @@
+<html>
+	<body style="background-color: transparent">
+		<!-- Object Type:- Required - To use the Date Selector specify the filename component as ClientDateSelector.php
+		     						  To use the Availability Calendar specify the filename component as ClientCalendar.php
+		     						  To use the Agent Selector specify the filename component as ClientAgentSelector.php
+		-->
+		<form action="http://ibex.seekom.com/accommodation/ClientCalendar.php"
+			  method="post">
+
+			<!-- Operator:- Required - Set value to your Operator ID -->
+			<input type="hidden" name="operator" id="operator" value="arapawa" >
+
+			<!-- Property:- May be Required - Set value to Property-ID or can be set dynamically by loading this page with "?pid=nnn" -->
+			<input type="hidden" name="property" id="property" value="5416" >
+
+
+			<!-- Date Selector layout:- Recommended - Set "Vertical" or "Horizontal". NB Does not apply to the Availability Calendar -->
+			<input type="hidden" name="layoutFormat" id="layoutFormat" value="Vertical" >
+
+				<!-- Styles:- Recommended - Set values to match client site
+				 The errorMessage and bookButton CSS class styles apply only to the Date Selector object
+				 The availCalXxxx CSS class styles apply only to the Availability Calendar
+			-->
+			<input type="hidden" name="clientStyles" id="clientStyles"
+			   	   value="
+						body { background-color: #320f16; margin: 0px; padding: 0px 0px 0px 0px; border: #FFF solid 0px;}
+						input { font: normal 9px Arial,Helvetica,Sans-serif; }
+						table { font: normal 11px Arial,Helvetica,Sans-serif;  color: #fff; }
+						select { font: normal 9px Arial,Helvetica,Sans-serif; }
+						.errorMessage { color: #ff0000; }
+						.clientImage { }
+						.clientMessage { font-size: 12px; }
+						.bookButton { font-size: 10px; }
+						.availCalOnDemand { background-color: #9CCA8D; font-size: 9px; color: 000000;}
+						.availCalOnRequest { background-color: #E4E37E; font-size: 9px;  color: 000000;}
+						.availCalUnavail { background-color: #DD737D; font-size: 9px; color: 000000;}
+		   	   ">
+
+			<!-- Booking Button attributes:- Optional - Change the button text, set a button image or specify tooltip (hover) text.
+				 NB Does not apply to the Availability Calendar
+			-->
+			<input type="hidden" name="buttonText" id="buttonText" value="Search Availability" >
+			<input type="hidden" name="buttonImage" id="buttonImage" value="" >
+			<input type="hidden" name="buttonToolTip" id="buttonToolTip" value="" >
+
+
+			<!-- Page URL:- Required - This specifes the URL of the page that will be loaded when the book button or calendar is clicked.
+				 The destination page may be one of the Seekom pages below or may be a page of your own which loads the Seekom page
+				 into an <iFrame>. Note that if you are targeting a page of your own, it must contain logic to forward the URL parameters
+				 to the Seekom page. Note also that if targeting the single property or enquiry page, the PropertyId value above must be supplied.
+				 For the Date Selector object the final page may be Property.php (single property), PropertySearch.php (multi-property) or Enquiry.php.
+				 For the Agent Selector object the final page may be Property.php (single property), PropertySearch.php (multi-property) or Enquiry.php.
+				 For the Availability Calendar object the final page may be Property.php (single property) or Enquiry.php.
+			-->
+			<input type="hidden" name="gotoPage" id="gotoPage"  value="http://example.com/book-now">
+
+			<!-- Target Window:- Optional - To open a new browser window with the Seekom (or your own) page, leave this value as ""
+											To load the Seekom page to another <iFrame> on the current page, specify the name of the iFrame
+											To replace the current page in the current window, set value to "_parent"
+			-->
+			<input type="hidden" name="targetWindow" id="targetWindow" value="_top">
+
+			<!-- Host Message Agent:- Optional - When running the Seekom pages in an iFrame on one of your own pages, it is possible to make
+				 your iFrame resize itself to fit the height of the Seekom page. However this requires that you have a "Host Message Agent"
+			     file on your own server in the same domain (eg. www.yourdomain.com) as your page that contains the iFrame. The value given here
+			     should be the fully-qualified URL of your Host Message Agent file. NOTE The Host Message Agent must run in the same mode as the hosting
+			     page, ie http: or https:, and the correct mode should be specified here. Furthermore, if the mode of your hosting page can vary, then
+			     your Javascript logic that forwards the URL parameters to the Seekom page must correcly set the mode of the "hostma" URL parameter
+			     prior to forwarding to the Seekom page.
+			-->
+			<input type="hidden" name="hostMessageAgent" id="hostMessageAgent" value="">
+
+			<!-- If "pid=xxx" is specified in the URL to this loader page, the following JavaScript will overwrite the value of the "property"
+				 field above with the URL supplied value. For websites with multiple properties this saves having to create a separate loader
+				 page for each property. You can modify this JavaScript to pass other URL parameters if you wish (eg registered user)
+			-->
+			<script language="javascript" type="text/javascript">
+ 				function gP(g){if(g==null){var e=window.location.href.indexOf("?");return e<0?"":window.location.href.substr(e);}var d=g.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");d="[\\?&]"+d+"=([^&#]*)";var f=new RegExp(d);var c=f.exec(window.location.href);if(c==null)return "";else return c[1];}
+ 				var pid = gP("pid");
+ 				if (pid != "") document.getElementById("property").value = pid;
+				var me = document.forms[0];
+				me.submit();
+			</script>
+
+		</form>
+	</body>
+</html>
